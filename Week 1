@@ -1,0 +1,424 @@
+1. Count Total Number of Negative Numbers in an Array
+#include <iostream>
+using namespace std;
+
+int countNegativeNumbers(int arr[], int size) {
+    int count = 0;
+    for (int i = 0; i < size; i++) {
+        if (arr[i] < 0) {
+            count++;
+        }
+    }
+    return count;
+}
+
+int main() {
+    int arr[] = {1, -2, 3, -4, 5, -6};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    cout << "Total number of negative numbers: " << countNegativeNumbers(arr, size) << endl;
+    return 0;
+}
+2. Find Max of 5 Integers
+#include <iostream>
+using namespace std;
+
+int main() {
+    int arr[5];
+    cout << "Enter 5 integers: ";
+    for (int i = 0; i < 5; i++) {
+        cin >> arr[i];
+    }
+    int max = arr[0];
+    for (int i = 1; i < 5; i++) {
+        if (arr[i] > max) {
+            max = arr[i];
+        }
+    }
+    cout << "Max of all numbers: " << max << endl;
+    return 0;
+}
+3. Merge Two Sorted Arrays
+#include <iostream>
+using namespace std;
+
+void mergeArrays(int arr1[], int size1, int arr2[], int size2, int merged[]) {
+    int i = 0, j = 0, k = 0;
+    while (i < size1 && j < size2) {
+        if (arr1[i] < arr2[j]) {
+            merged[k++] = arr1[i++];
+        } else {
+            merged[k++] = arr2[j++];
+        }
+    }
+    while (i < size1) {
+        merged[k++] = arr1[i++];
+    }
+    while (j < size2) {
+        merged[k++] = arr2[j++];
+    }
+}
+
+int main() {
+    int arr1[] = {1, 3, 5, 7};
+    int arr2[] = {2, 4, 6, 8};
+    int size1 = sizeof(arr1) / sizeof(arr1[0]);
+    int size2 = sizeof(arr2) / sizeof(arr2[0]);
+    int merged[size1 + size2];
+    mergeArrays(arr1, size1, arr2, size2, merged);
+    cout << "Merged array: ";
+    for (int i = 0; i < size1 + size2; i++) {
+        cout << merged[i] << " ";
+    }
+    cout << endl;
+    return 0;
+}
+4. Reverse the Order of Numbers in an Array
+#include <iostream>
+using namespace std;
+
+void reverseArray(int arr[], int size) {
+    for (int i = 0; i < size / 2; i++) {
+        int temp = arr[i];
+        arr[i] = arr[size - 1 - i];
+        arr[size - 1 - i] = temp;
+    }
+}
+
+int main() {
+    int arr[7];
+    cout << "Enter 7 integers: ";
+    for (int i = 0; i < 7; i++) {
+        cin >> arr[i];
+    }
+    reverseArray(arr, 7);
+    cout << "Reversed array: ";
+    for (int i = 0; i < 7; i++) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+    return 0;
+}
+5. Check if Array is Palindrome
+#include <iostream>
+using namespace std;
+
+bool isPalindrome(int arr[], int size) {
+    for (int i = 0; i < size / 2; i++) {
+        if (arr[i] != arr[size - 1 - i]) {
+            return false;
+        }
+    }
+    return true;
+}
+
+int main() {
+    int arr[5];
+    cout << "Enter 5 integers: ";
+    for (int i = 0; i < 5; i++) {
+        cin >> arr[i];
+    }
+    if (isPalindrome(arr, 5)) {
+        cout << "The array is in palindrome order" << endl;
+    } else {
+        cout << "The array is not in palindrome order" << endl;
+    }
+    return 0;
+}
+6. Search a Number in an Array
+#include <iostream>
+using namespace std;
+
+int searchNumber(int arr[], int size, int num) {
+    for (int i = 0; i < size; i++) {
+        if (arr[i] == num) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+int main() {
+    int arr[] = {1, 2, 3, 4, 5};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    int num;
+    cout << "Enter a number to search: ";
+    cin >> num;
+    int index = searchNumber(arr, size, num);
+    if (index != -1) {
+        cout << "Number found at index: " << index << endl;
+    } else {
+        cout << "Number not found" << endl;
+    }
+    return 0;
+}
+7. Print All Unique Numbers in an Array
+#include <iostream>
+#include <unordered_set>
+using namespace std;
+
+void printUniqueNumbers(int arr[], int size) {
+    unordered_set<int> uniqueNumbers;
+    for (int i = 0; i < size; i++) {
+        uniqueNumbers.insert(arr[i]);
+    }
+    cout << "Unique numbers: ";
+    for (int num : uniqueNumbers) {
+        cout << num << " ";
+    }
+    cout << endl;
+}
+
+int main() {
+    int arr[] = {1, 2, 2, 3, 4, 4, 5};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    printUniqueNumbers(arr, size);
+    return 0;
+}
+8. Count Frequency of Each Number in an Array
+#include <iostream>
+#include <unordered_map>
+using namespace std;
+
+void countFrequency(int arr[], int size) {
+    unordered_map<int, int> frequency;
+    for (int i = 0; i < size; i++) {
+        frequency[arr[i]]++;
+    }
+    cout << "Frequency of each number: " << endl;
+    for (auto pair : frequency) {
+        cout << pair.first << ": " << pair.second << endl;
+    }
+}
+
+int main() {
+    int arr[] = {1, 2, 2, 3, 4, 4, 5};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    countFrequency(arr, size);
+    return 0;
+}
+9. Count Total Number of Duplicate Numbers in an Array
+#include <iostream>
+#include <unordered_map>
+using namespace std;
+
+int countDuplicates(int arr[], int size) {
+    unordered_map<int, int> frequency;
+    int count = 0;
+    for (int i = 0; i < size; i++) {
+        frequency[arr[i]]++;
+    }
+    for (auto pair : frequency) {
+        if (pair.second > 1) {
+            count++;
+        }
+    }
+    return count;
+}
+
+int main() {
+    int arr[] = {1, 2, 2, 3, 4, 4, 5};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    cout << "Total number of duplicate numbers: " << countDuplicates(arr, size) << endl;
+    return 0;
+}
+10. Print Parallelogram Pattern
+#include <iostream>
+using namespace std;
+
+void printParallelogram(int rows, int cols) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < rows - i - 1; j++) {
+            cout << " ";
+        }
+        for (int k = 0; k < cols; k++) {
+            cout << "*";
+        }
+        cout << endl;
+    }
+}
+
+int main() {
+    int rows, cols;
+    cout << "Enter number of rows: ";
+    cin >> rows;
+    cout << "Enter number of columns: ";
+    cin >> cols;
+    printParallelogram(rows, cols);
+    return 0;
+}
+11. Print Right Triangle Pattern
+#include <iostream>
+using namespace std;
+
+void printRightTriangle(int rows) {
+    for (int i = 1; i <= rows; i++) {
+        for (int j = 0; j < i; j++) {
+            cout << "*";
+        }
+        cout << endl;
+    }
+}
+
+int main() {
+    int rows;
+    cout << "Enter number of rows: ";
+    cin >> rows;
+    printRightTriangle(rows);
+    return 0;
+}
+12. Print Half Diamond Pattern
+#include <iostream>
+using namespace std;
+
+void printHalfDiamond(int cols) {
+    for (int i = 1; i <= cols; i++) {
+        for (int j = 0; j < i; j++) {
+            cout << "*";
+        }
+        cout << endl;
+    }
+    for (int i = cols -
+Sent by you:
+remaining questions
+Sent by Copilot:
+Sure, let's continue with the remaining questions in C++:
+12. Print Half Diamond Pattern (continued)
+#include <iostream>
+using namespace std;
+
+void printHalfDiamond(int cols) {
+    for (int i = 1; i <= cols; i++) {
+        for (int j = 0; j < i; j++) {
+            cout << "*";
+        }
+        cout << endl;
+    }
+    for (int i = cols - 1; i > 0; i--) {
+        for (int j = 0; j < i; j++) {
+            cout << "*";
+        }
+        cout << endl;
+    }
+}
+
+int main() {
+    int cols;
+    cout << "Enter number of columns: ";
+    cin >> cols;
+    printHalfDiamond(cols);
+    return 0;
+}
+13. Print Diamond Pattern
+#include <iostream>
+using namespace std;
+
+bool printDiamond(int rows) {
+    if (rows % 2 == 0) {
+        cout << "Error: Number of rows must be odd." << endl;
+        return false;
+    }
+    int n = rows / 2;
+    for (int i = 0; i <= n; i++) {
+        for (int j = 0; j < n - i; j++) {
+            cout << " ";
+        }
+        for (int k = 0; k < 2 * i + 1; k++) {
+            cout << "*";
+        }
+        cout << endl;
+    }
+    for (int i = n - 1; i >= 0; i--) {
+        for (int j = 0; j < n - i; j++) {
+            cout << " ";
+        }
+        for (int k = 0; k < 2 * i + 1; k++) {
+            cout << "*";
+        }
+        cout << endl;
+    }
+    return true;
+}
+
+int main() {
+    int rows;
+    cout << "Enter number of rows: ";
+    cin >> rows;
+    printDiamond(rows);
+    return 0;
+}
+14. Print 12345 Pattern
+#include <iostream>
+using namespace std;
+
+void printPattern(int rows, int cols) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            if (i % 2 == 0) {
+                cout << j + 1;
+            } else {
+                cout << cols - j;
+            }
+        }
+        cout << endl;
+    }
+}
+
+int main() {
+    int rows, cols;
+    cout << "Enter number of rows: ";
+    cin >> rows;
+    cout << "Enter number of columns: ";
+    cin >> cols;
+    printPattern(rows, cols);
+    return 0;
+}
+15. Print 11111 Pattern
+#include <iostream>
+using namespace std;
+
+void printPattern(int rows, int cols) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            if (i == 0 || i == rows - 1 || j == 0 || j == cols - 1) {
+                cout << "1";
+            } else {
+                cout << "0";
+            }
+        }
+        cout << endl;
+    }
+}
+
+int main() {
+    int rows, cols;
+    cout << "Enter number of rows: ";
+    cin >> rows;
+    cout << "Enter number of columns: ";
+    cin >> cols;
+    printPattern(rows, cols);
+    return 0;
+}
+16. Print 12345 Pattern with Increment
+#include <iostream>
+using namespace std;
+
+void printPattern(int rows) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < rows; j++) {
+            if (j < i) {
+                cout << i + 1;
+            } else {
+                cout << j + 1;
+            }
+        }
+        cout << endl;
+    }
+}
+
+int main() {
+    int rows;
+    cout << "Enter number of rows: ";
+    cin >> rows;
+    printPattern(rows);
+    return 0;
+}
